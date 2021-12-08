@@ -1,4 +1,4 @@
-import akka.actor.typed.ActorSystem;
+import akka.actor.ActorSystem;
 
 public class TestingApp {
     public static void main(String[] args) {
