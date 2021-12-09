@@ -54,10 +54,11 @@ public class TestingApp {
                 path("result", () ->
                         route(
                                 get( () -> {
-                                    Future<Object> result = Patterns.ask(testPackageActor,
-                                            SemaphoreActor.makeRequest(), 5000);
-                                    return completeOKWithFuture(result, Jackson.marshaller());
-                                })))
+
+                                })),
+                                post(() -> {
+
+                                })
         );
     }
 }
