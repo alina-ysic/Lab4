@@ -57,7 +57,7 @@ public class TestingApp {
                                     System.out.println("get");
                                     return null;
                                 })),
-                                post(() -> {
+                                post(() -> { // запрос на запуск теста
                                     System.out.println("post");
                                     return null;
                                 })
