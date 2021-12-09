@@ -20,10 +20,10 @@ import static akka.http.javadsl.server.Directives.*;
 
 public class TestingApp {
 
-    private final ActorSystem actorSystem;
+    private static final ActorRef routerActor;
 
-    public TestingApp(ActorSystem actorSystem) {
-        this.actorSystem = actorSystem;
+    public TestingApp(ActorRef routerActor) {
+        this.routerActor = routerActor;
     }
 
     public static void main(String[] args) throws IOException {
@@ -32,7 +32,7 @@ public class TestingApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        TestingApp instance = new TestingApp(system);
+        TestingApp instance = new TestingApp(routerActor);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 instance.createRoute(system).flow(system, materializer);
 
@@ -56,7 +56,7 @@ public class TestingApp {
                 path("test-app", () ->
                         route(
                                 get(() -> parameter("packageId", (packageId) -> {
-                                    Future<Object> result = Patterns.ask(rou,
+                                    Future<Object> result = Patterns.ask(routerActor,
                                             SemaphoreActor.makeRequest(), 5000);
                                     return completeOKWithFuture(result, Jackson.marshaller());
                                     return null;
