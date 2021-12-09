@@ -58,7 +58,7 @@ public class TestingApp {
                         route(
                                 get(() -> parameter("packageId", (packageId) -> {
                                     Future<Object> result = Patterns.ask(routerActor,
-                                            SemaphoreActor.makeRequest(), 5000);
+                                            packageId, 5000);
                                     return completeOKWithFuture(result, Jackson.marshaller());
                                     return null;
                                 })),
