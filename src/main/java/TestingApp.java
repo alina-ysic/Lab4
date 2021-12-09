@@ -8,11 +8,13 @@ import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.server.Route;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Future;
 
 import static akka.http.javadsl.server.Directives.*;
 
@@ -54,7 +56,9 @@ public class TestingApp {
                 path("test-app", () ->
                         route(
                                 get(() -> parameter("packageId", (packageId) -> {
-                                    System.out.println("get");
+                                    Future<Object> result = Patterns.ask(rou,
+                                            SemaphoreActor.makeRequest(), 5000);
+                                    return completeOKWithFuture(result, Jackson.marshaller());
                                     return null;
                                 })),
                                 post(() -> { // запрос на запуск теста
