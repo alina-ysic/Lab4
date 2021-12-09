@@ -1,18 +1,24 @@
+import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
+import akka.stream.javadsl.Flow;
+
+import java.io.IOException;
 
 public class TestingApp {
 
-    private final ActorSystem;
+    private final ActorSystem actorSystem;
 
     public TestingApp(ActorSystem actorSystem) {
-        this.
+        this.actorSystem = actorSystem;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("test");
         ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
 
@@ -21,11 +27,13 @@ public class TestingApp {
         TestingApp instance = new TestingApp(system);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 instance.createRoute(system).flow(system, materializer);
+
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
                 materializer
         );
+
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
         binding
