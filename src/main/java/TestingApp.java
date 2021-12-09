@@ -14,6 +14,8 @@ import akka.stream.javadsl.Flow;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
+import static akka.http.javadsl.server.Directives.route;
+
 public class TestingApp {
 
     private final ActorSystem actorSystem;
@@ -48,6 +50,6 @@ public class TestingApp {
     }
 
     public static Route createRoute(ActorSystem actorSystem) {
-        return null;
+        return route();
     }
 }
