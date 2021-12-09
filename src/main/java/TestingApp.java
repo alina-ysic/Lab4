@@ -20,7 +20,7 @@ import static akka.http.javadsl.server.Directives.*;
 
 public class TestingApp {
 
-    private static final ActorRef routerActor;
+    private final ActorRef routerActor;
 
     public TestingApp(ActorRef routerActor) {
         this.routerActor = routerActor;
@@ -51,7 +51,7 @@ public class TestingApp {
 
     }
 
-    public static Route createRoute(ActorSystem actorSystem) {
+    public Route createRoute(ActorSystem actorSystem) {
         return route(
                 path("test-app", () ->
                         route(
