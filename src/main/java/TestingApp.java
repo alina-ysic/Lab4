@@ -54,11 +54,15 @@ public class TestingApp {
                 path("result", () ->
                         route(
                                 get( () -> {
-
-                                })),
+                                    System.out.println("get");
+                                    return null;
+                                }),
                                 post(() -> {
-
+                                    System.out.println("post");
+                                    return null;
                                 })
+                        )
+                )
         );
     }
 }
