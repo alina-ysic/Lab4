@@ -6,7 +6,7 @@ import akka.stream.ActorMaterializer;
 
 public class TestingApp {
 
-    
+    private final ActorSystem = 
 
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("test");
