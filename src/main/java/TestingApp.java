@@ -5,6 +5,9 @@ import akka.http.javadsl.Http;
 import akka.stream.ActorMaterializer;
 
 public class TestingApp {
+
+    
+
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("test");
         ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
