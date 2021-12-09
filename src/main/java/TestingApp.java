@@ -14,6 +14,7 @@ import akka.stream.javadsl.Flow;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
+import static akka.http.javadsl.server.Directives.path;
 import static akka.http.javadsl.server.Directives.route;
 
 public class TestingApp {
@@ -50,6 +51,14 @@ public class TestingApp {
     }
 
     public static Route createRoute(ActorSystem actorSystem) {
-        return route();
+        return route(
+                path("result", () ->
+                        route(
+                                get( () -> {
+                                    Future<Object> result = Patterns.ask(testPackageActor,
+                                            SemaphoreActor.makeRequest(), 5000);
+                                    return completeOKWithFuture(result, Jackson.marshaller());
+                                }))),
+        );
     }
 }
