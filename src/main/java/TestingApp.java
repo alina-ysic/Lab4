@@ -58,7 +58,7 @@ public class TestingApp {
                                     Future<Object> result = Patterns.ask(testPackageActor,
                                             SemaphoreActor.makeRequest(), 5000);
                                     return completeOKWithFuture(result, Jackson.marshaller());
-                                }))),
+                                })))
         );
     }
 }
