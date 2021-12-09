@@ -51,7 +51,7 @@ public class TestingApp {
 
     public static Route createRoute(ActorSystem actorSystem) {
         return route(
-                path("result", () ->
+                path("test_app", () ->
                         route(
                                 get(() -> parameter("packageId", (packageId) -> {
                                     System.out.println("get");
