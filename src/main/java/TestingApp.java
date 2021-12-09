@@ -53,10 +53,10 @@ public class TestingApp {
         return route(
                 path("result", () ->
                         route(
-                                get( () -> {
+                                get(() -> parameter("key", (key) -> {
                                     System.out.println("get");
                                     return null;
-                                }),
+                                })),
                                 post(() -> {
                                     System.out.println("post");
                                     return null;
