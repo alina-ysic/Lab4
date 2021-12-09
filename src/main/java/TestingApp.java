@@ -7,7 +7,8 @@ import akka.stream.ActorMaterializer;
 public class TestingApp {
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("test");
-
+        ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
+        
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         TestingApp instance = new TestingApp(system);
@@ -25,6 +26,5 @@ public class TestingApp {
                 .thenAccept(unbound -> system.terminate());
 
 
-        ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
     }
 }
