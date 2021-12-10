@@ -2,15 +2,17 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.routing.ActorRefRoutee;
+import akka.routing.RoundRobinRoutingLogic;
 import akka.routing.Routee;
+import akka.routing.Router;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RouterActor extends AbstractActor {
 
-    public final ActorRef results;
-
+    private final ActorRef results;
+    private final Router router;
 
     public RouterActor() {
         results = getContext().actorOf(Props.create(ResultingActor.class));
