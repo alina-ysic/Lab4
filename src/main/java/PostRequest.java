@@ -5,6 +5,7 @@ public class PostRequest {
     private String packageId;
     @JsonProperty("jsScript")
     private String jsScript;
+    @JsonProperty("functionName")
     private String functionName;
     ArrayList<Test> tests;
 
