@@ -11,7 +11,7 @@ public class ExecuterActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder
                 .create()
-                .match(Test.class, m -> execute(m))
+                .match(Test.class, test -> sender().tell(execute(test), self()))
                 .build();
     }
 
