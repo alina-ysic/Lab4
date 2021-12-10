@@ -28,8 +28,14 @@ public class RouterActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-            .match(PostRequest.class, request -> System.out.println(m))
+            .match(PostRequest.class, request -> executeTests(request))
             .match(GetRequest.class, m -> System.out.println(m))
                 .build();
+    }
+
+    private void executeTests(PostRequest request) {
+        for (Test test : request.getTests()) {
+            
+        }
     }
 }

@@ -6,4 +6,7 @@ public class PostRequest {
     private String functionName;
     ArrayList<Test> tests;
 
+    public ArrayList<Test> getTests() {
+        return tests;
+    }
 }
