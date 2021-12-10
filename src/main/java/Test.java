@@ -7,6 +7,8 @@ public class Test {
     private String testName;
     private ArrayList<Object> params;
 
+    private packageId
+
     public Test(@JsonProperty("expectedResult") String expectedResult,
                        @JsonProperty("testName") String testName,
                        @JsonProperty("params") ArrayList<Object> params) {
@@ -14,4 +16,6 @@ public class Test {
         this.testName = testName;
         this.params = params;
     }
+
+    public set
 }
