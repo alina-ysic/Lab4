@@ -29,7 +29,7 @@ public class RouterActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
             .match(PostRequest.class, postRequest -> executeTests(postRequest))
-            .match(GetRequest.class, getRequest -> System.out.println(getRequest))
+            .match(GetRequest.class, getRequest -> resultActor)
                 .build();
     }
 
