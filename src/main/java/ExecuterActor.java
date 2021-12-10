@@ -9,5 +9,7 @@ public class ExecuterActor extends AbstractActor {
                 .match(Test.class, )
     }
 
-    public void execute
+    public void execute(Test test) {
+        
+    }
 }
