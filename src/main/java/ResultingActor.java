@@ -24,7 +24,8 @@ public class ResultingActor extends AbstractActor {
     private void saveResult(Test test) {
         Map<String, String> packageResults = results.get(test.getPackageId());
         if (packageResults == null) packageResults = new HashMap<>();
-        packageResults.put(test.getActualResult(), test.getExpectedResult());
+        String result = (test.getActualResult().equals(test.getExpectedResult())) ? "ok" : "not ok";
+        packageResults.put(test.getTestName(), result);
         results.put(test.getPackageId(), packageResults);
         System.out.println(test.getPackageId());
         System.out.println(results.get(test.getPackageId()));
