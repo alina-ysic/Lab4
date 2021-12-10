@@ -15,8 +15,9 @@ public class ResultingActor extends AbstractActor {
                 .create()
                 .match(GetRequest.class, getRequest -> {
                     System.out.println(results.get(getRequest.getPachageId()));
-                    Map<String, String> 
-                    sender().tell(results.get(getRequest.getPachageId()), ActorRef.noSender());
+                    Map<String, String> packageResult = results.get(getRequest.getPachageId());
+                    if (packageResult == null) packageResult = new HashMap<>();
+                    sender().tell(packageResult, ActorRef.noSender());
                 })
                 .match(Test.class, this::saveResult)
                 .build();
