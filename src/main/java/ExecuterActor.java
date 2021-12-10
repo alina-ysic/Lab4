@@ -1,6 +1,7 @@
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
 
+import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
@@ -13,10 +14,10 @@ public class ExecuterActor extends AbstractActor {
     }
 
     public void execute(Test test) {
-        ScriptEngine engine = new
+        /*ScriptEngine engine = new
                 ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(test.);
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(functionName, params).toString();
+        return invocable.invokeFunction(functionName, params).toString();*/
     }
 }
