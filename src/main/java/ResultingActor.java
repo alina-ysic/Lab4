@@ -13,12 +13,12 @@ public class ResultingActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder
                 .create()
-                .match(GetRequest.class, getRequest -> sender().tell(results.get(), ActorRef.noSender()))
+                .match(GetRequest.class, getRequest -> sender().tell(results.get(getRequest.getPachageId()), ActorRef.noSender()))
                 .match(Test.class, this::saveResult)
                 .build();
     }
 
     private void saveResult(Test test) {
-
+        
     }
 }
