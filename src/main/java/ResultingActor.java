@@ -19,6 +19,7 @@ public class ResultingActor extends AbstractActor {
     }
 
     private void saveResult(Test test) {
-        Map<String, String> packageResults = results.get()
+        Map<String, String> packageResults = results.get(test.getPackageId());
+        System.out.println(packageResults);
     }
 }
