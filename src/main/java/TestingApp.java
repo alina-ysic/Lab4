@@ -59,7 +59,7 @@ public class TestingApp {
                         route(
                                 get(() -> parameter("packageId", (packageId) -> {
                                     Future<Object> result = Patterns.ask(routerActor,
-                                            packageId, 5000);
+                                            new GetRequest(packageId), 5000);
                                     return completeOKWithFuture(result, Jackson.marshaller());
                                 })),
                                 post(() -> { // запрос на запуск теста
