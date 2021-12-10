@@ -6,6 +6,7 @@ public class ResultingActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder
                 .create()
+                .match(GetRequest.class, m -> System.out.println(m))
                 .build();
     }
 }
