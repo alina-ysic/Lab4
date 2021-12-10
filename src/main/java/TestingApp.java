@@ -34,7 +34,7 @@ public class TestingApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        TestingApp instance = new TestingApp(routerActor);
+        /*TestingApp instance = new TestingApp(routerActor);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 instance.createRoute(system).flow(system, materializer);
 
@@ -48,7 +48,7 @@ public class TestingApp {
         System.in.read();
         binding
                 .thenCompose(ServerBinding::unbind)
-                .thenAccept(unbound -> system.terminate());
+                .thenAccept(unbound -> system.terminate());*/
 
 
     }
