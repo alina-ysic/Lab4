@@ -11,19 +11,19 @@ import java.util.List;
 
 public class RouterActor extends AbstractActor {
 
-    private final ActorRef results;
-    private final Router router;
+    private final ActorRef resultActor;
+    private final Router executerRouter;
 
     public RouterActor() {
-        results = getContext().actorOf(Props.create(ResultingActor.class));
+        resultActor = getContext().actorOf(Props.create(ResultingActor.class));
         //getContext().watch(results);
-        List<Routee> routees = new ArrayList<Routee>();
+        List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             ActorRef r = getContext().actorOf(Props.create(ExecuterActor.class));
             //getContext().watch(r);
             routees.add(new ActorRefRoutee(r));
         }
-        router = new Router(new RoundRobinRoutingLogic(), routees);
+        executerRouter = new Router(new RoundRobinRoutingLogic(), routees);
     }
     @Override
     public Receive createReceive() {
@@ -35,7 +35,7 @@ public class RouterActor extends AbstractActor {
 
     private void executeTests(PostRequest request) {
         for (Test test : request.getTests()) {
-            router.route(test, results);
+            executerRouter.route(test, resultActor);
         }
     }
 }
