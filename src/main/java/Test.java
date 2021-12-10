@@ -30,4 +30,28 @@ public class Test {
     public void setFunctionName(String functionName) {
         this.functionName = functionName;
     }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public String getPackageId() {
+        return packageId;
+    }
+
+    public ArrayList<Object> getParams() {
+        return params;
+    }
+
+    public String getExpectedResult() {
+        return expectedResult;
+    }
+
+    public String getFunctionName() {
+        return functionName;
+    }
+
+    public String getJsScript() {
+        return jsScript;
+    }
 }
