@@ -62,12 +62,12 @@ public class TestingApp {
                                             new GetRequest(packageId), 5000);
                                     return completeOKWithFuture(result, Jackson.marshaller());
                                 })),
-                                post(() -> { // запрос на запуск теста
+                                post(() -> // запрос на запуск теста
                                             entity(Jackson.unmarshaller(PostRequest.class), msg -> {
                                                 routerActor.tell(msg, ActorRef.noSender());
                                                 return complete("Test started");
-                                            });
-                                        })
+                                            })
+                                        )
                         )
                 )
         );
