@@ -10,7 +10,7 @@ public class ExecuterActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder
                 .create()
-                .match(Test.class, )
+                .build();
     }
 
     public void execute(Test test) {
