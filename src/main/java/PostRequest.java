@@ -21,4 +21,16 @@ public class PostRequest {
     public ArrayList<Test> getTests() {
         return tests;
     }
+
+    public String getJsScript() {
+        return jsScript;
+    }
+
+    public String getFunctionName() {
+        return functionName;
+    }
+
+    public String getPackageId() {
+        return packageId;
+    }
 }
