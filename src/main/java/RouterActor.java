@@ -1,5 +1,6 @@
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.Props;
 
 public class RouterActor extends AbstractActor {
 
@@ -7,7 +8,7 @@ public class RouterActor extends AbstractActor {
 
 
     public RouterActor() {
-        results = getContext().actorOf()
+        results = getContext().actorOf(Props.create(RouterActor.class));
     }
     @Override
     public Receive createReceive() {
