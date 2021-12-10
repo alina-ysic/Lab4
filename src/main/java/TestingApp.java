@@ -63,7 +63,7 @@ public class TestingApp {
                                     return completeOKWithFuture(result, Jackson.marshaller());
                                 })),
                                 post(() -> { // запрос на запуск теста
-                                    entity(Jackson.unmarshaller(TestPackageMsg.class), msg -> {
+                                    entity(Jackson.unmarshaller(PostRequest.class), msg -> {
                                         testPackageActor.tell(msg, ActorRef.noSender());
                                         return complete("Test started!");
                                     System.out.println("post");
