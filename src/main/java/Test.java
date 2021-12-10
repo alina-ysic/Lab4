@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 public class Test {
     private String expectedResult;
     private String testName;
-    private String expectedResult;
+    private ArrayList<Object> params;
 }
