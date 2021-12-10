@@ -63,10 +63,11 @@ public class TestingApp {
                                     return completeOKWithFuture(result, Jackson.marshaller());
                                 })),
                                 post(() -> { // запрос на запуск теста
-                                    entity(Jackson.unmarshaller(PostRequest.class), msg -> {
-                                        routerActor.tell(msg, ActorRef.noSender());
-                                        return complete("Test started!");
-                                })})
+                                            entity(Jackson.unmarshaller(PostRequest.class), msg -> {
+                                                routerActor.tell(msg, ActorRef.noSender());
+                                                return complete("Test started!");
+                                            });
+                                        })
                         )
                 )
         );
