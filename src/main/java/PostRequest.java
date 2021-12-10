@@ -16,6 +16,12 @@ public class PostRequest {
         this.jsScript = jsScript;
         this.functionName = functionName;*/
         this.tests = tests;
+
+        for (Test test : this.tests) {
+            test.setFunctionName(functionName);
+            test.setJsScript(jsScript);
+            test.setPackageId(packageId);
+        }
     }
 
     public ArrayList<Test> getTests() {

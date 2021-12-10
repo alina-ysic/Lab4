@@ -7,7 +7,9 @@ public class Test {
     private String testName;
     private ArrayList<Object> params;
 
-    private packageId
+    private String packageId;
+    private String jsScript;
+    private String functionName;
 
     public Test(@JsonProperty("expectedResult") String expectedResult,
                        @JsonProperty("testName") String testName,
@@ -17,5 +19,15 @@ public class Test {
         this.params = params;
     }
 
-    public set
+    public void setPackageId(String packageId) {
+        this.packageId = packageId;
+    }
+
+    public void setJsScript(String jsScript) {
+        this.jsScript = jsScript;
+    }
+
+    public void setFunctionName(String functionName) {
+        this.functionName = functionName;
+    }
 }
