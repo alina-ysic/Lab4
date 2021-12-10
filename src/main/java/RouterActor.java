@@ -1,6 +1,10 @@
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
+import akka.routing.Routee;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RouterActor extends AbstractActor {
 
@@ -9,6 +13,14 @@ public class RouterActor extends AbstractActor {
 
     public RouterActor() {
         results = getContext().actorOf(Props.create(ResultingActor.class));
+
+        List<Routee> routees = new ArrayList<Routee>();
+        for (int i = 0; i < 5; i++) {
+            ActorRef r = getContext().actorOf(Props.create(ExecuterActor.class));
+            getContext().watch(r);
+            routees.add(new ActorRefRoutee(r));
+        }
+        router = new Router(new RoundRobinRoutingLogic(), routees);
     }
     @Override
     public Receive createReceive() {
