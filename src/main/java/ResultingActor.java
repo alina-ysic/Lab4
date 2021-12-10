@@ -13,7 +13,11 @@ public class ResultingActor extends AbstractActor {
         return ReceiveBuilder
                 .create()
                 .match(GetRequest.class, m -> System.out.println(m))
-                .match(Test.class, m -> System.out.println(m))
+                .match(Test.class, sa)
                 .build();
+    }
+
+    private saveResult(Test test) {
+
     }
 }
