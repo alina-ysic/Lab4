@@ -19,6 +19,6 @@ public class ResultingActor extends AbstractActor {
     }
 
     private void saveResult(Test test) {
-        Map<String, String> packageResults = 
+        Map<String, String> packageResults = results.get()
     }
 }
