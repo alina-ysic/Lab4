@@ -23,7 +23,7 @@ public class ExecuterActor extends AbstractActor {
         System.out.println(test.getFunctionName());
         System.out.println(test.getJsScript());
         System.out.println(test.getParams());
-        System.out.println(invocable.invokeFunction(test.getFunctionName(), test.getParams()).toString());
+        System.out.println(invocable.invokeFunction(test.getFunctionName(), 2, 1).toString());
         return invocable.invokeFunction(test.getFunctionName(), test.getParams()).toString();
     }
 }
