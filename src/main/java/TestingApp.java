@@ -49,8 +49,6 @@ public class TestingApp {
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
-
-
     }
 
     public Route createRoute(ActorSystem actorSystem) {

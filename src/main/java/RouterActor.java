@@ -16,11 +16,9 @@ public class RouterActor extends AbstractActor {
 
     public RouterActor() {
         resultActor = getContext().actorOf(Props.create(ResultingActor.class));
-        //getContext().watch(results);
         List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             ActorRef r = getContext().actorOf(Props.create(ExecuterActor.class));
-            //getContext().watch(r);
             routees.add(new ActorRefRoutee(r));
         }
         executerRouter = new Router(new RoundRobinRoutingLogic(), routees);

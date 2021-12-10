@@ -14,7 +14,6 @@ public class ResultingActor extends AbstractActor {
         return ReceiveBuilder
                 .create()
                 .match(GetRequest.class, getRequest -> {
-                    System.out.println(results.get(getRequest.getPachageId()));
                     Map<String, String> packageResult = results.get(getRequest.getPachageId());
                     if (packageResult == null) packageResult = new HashMap<>();
                     sender().tell(packageResult, ActorRef.noSender());
@@ -29,7 +28,5 @@ public class ResultingActor extends AbstractActor {
         String result = (test.getActualResult().equals(test.getExpectedResult())) ? "ok" : "not ok";
         packageResults.put(test.getTestName(), result);
         results.put(test.getPackageId(), packageResults);
-        System.out.println(test.getPackageId());
-        System.out.println(results.get(test.getPackageId()));
     }
 }
