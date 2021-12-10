@@ -1,4 +1,5 @@
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 import akka.japi.pf.ReceiveBuilder;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class ResultingActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder
                 .create()
-                .match(GetRequest.class, getRequest -> sender().tell())
+                .match(GetRequest.class, getRequest -> sender().tell(, ActorRef.noSender()))
                 .match(Test.class, this::saveResult)
                 .build();
     }
