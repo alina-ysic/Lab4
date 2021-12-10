@@ -26,7 +26,7 @@ public class ResultingActor extends AbstractActor {
         if (packageResults == null) packageResults = new HashMap<>();
         packageResults.put(test.getActualResult(), test.getExpectedResult());
         results.put(test.getPackageId(), packageResults);
-        System.out.println(test.getPackageId()));
+        System.out.println(test.getPackageId());
         System.out.println(results.get(test.getPackageId()));
     }
 }
