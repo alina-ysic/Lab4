@@ -1,3 +1,5 @@
 public class Test {
-    private String expected
+    private String expectedResult;
+    private String testName;
+    private String expectedResult;
 }
