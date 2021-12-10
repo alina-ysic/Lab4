@@ -1,5 +1,6 @@
 public class PostRequest {
     private String packageId;
-    private String script;
-    
+    private String jsScript;
+    private String 
+
 }
