@@ -11,6 +11,8 @@ public class Test {
     private String jsScript;
     private String functionName;
 
+    private String actualResult;
+
     public Test(@JsonProperty("expectedResult") String expectedResult,
                        @JsonProperty("testName") String testName,
                        @JsonProperty("params") ArrayList<Object> params) {
@@ -53,5 +55,13 @@ public class Test {
 
     public String getJsScript() {
         return jsScript;
+    }
+
+    public String getActualResult() {
+        return actualResult;
+    }
+
+    public void setActualResult(String actualResult) {
+        this.actualResult = actualResult;
     }
 }
