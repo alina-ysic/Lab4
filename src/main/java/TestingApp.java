@@ -30,7 +30,7 @@ public class TestingApp {
 
     public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("test");
-        //ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
+        ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
 
         //final Http http = Http.get(system);
         //final ActorMaterializer materializer = ActorMaterializer.create(system);
