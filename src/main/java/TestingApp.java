@@ -35,25 +35,41 @@ public class TestingApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         TestingApp instance = new TestingApp(routerActor);
-        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = instance.createRoute(system).flow(system, materializer);
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
+                instance.createRoute(system).flow(system, materializer);
 
-        final CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow, ConnectHttp.toHost("localhost", 8080), materializer);
+        final CompletionStage<ServerBinding> binding = http.bindAndHandle(
+                routeFlow,
+                ConnectHttp.toHost("localhost", 8080),
+                materializer
+        );
 
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
-        binding.thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
+        binding
+                .thenCompose(ServerBinding::unbind)
+                .thenAccept(unbound -> system.terminate());
 
 
     }
 
     public Route createRoute(ActorSystem actorSystem) {
-        return route(path("test-app", () -> route(get(() -> parameter("packageId", (packageId) -> {
-            Future<Object> result = Patterns.ask(routerActor, new GetRequest(packageId), 5000);
-            return completeOKWithFuture(result, Jackson.marshaller());
-        })), post(() -> // запрос на запуск теста
-                entity(Jackson.unmarshaller(PostRequest.class), msg -> {
-                    routerActor.tell(msg, ActorRef.noSender());
-                    return complete("Test started");
-                })))));
+        return route(
+                path("test-app", () ->
+                        route(
+                                get(() -> parameter("packageId", (packageId) -> {
+                                    Future<Object> result = Patterns.ask(routerActor,
+                                            new GetRequest(packageId), 5000);
+                                    return completeOKWithFuture(result, Jackson.marshaller());
+                                })),
+                                post(() -> // запрос на запуск теста
+                                        entity(Jackson.unmarshaller(PostRequest.class), msg -> {
+                                            routerActor.tell(msg, ActorRef.noSender());
+                                            return complete("Test started");
+                                        })
+                                )
+                        )
+                )
+        );
     }
 }
