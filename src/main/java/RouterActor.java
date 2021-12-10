@@ -7,7 +7,7 @@ public class RouterActor extends AbstractActor {
 
 
     public RouterActor() {
-        results = getContext().
+        results = getContext().actorOf()
     }
     @Override
     public Receive createReceive() {
