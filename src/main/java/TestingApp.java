@@ -32,8 +32,8 @@ public class TestingApp {
         ActorSystem system = ActorSystem.create("test");
         ActorRef routerActor = system.actorOf(Props.create(RouterActor.class));
 
-        final Http http = Http.get(system);
-        final ActorMaterializer materializer = ActorMaterializer.create(system);
+        //final Http http = Http.get(system);
+        //final ActorMaterializer materializer = ActorMaterializer.create(system);
         /*TestingApp instance = new TestingApp(routerActor);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 instance.createRoute(system).flow(system, materializer);
