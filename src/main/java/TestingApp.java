@@ -22,6 +22,7 @@ import static akka.http.javadsl.server.Directives.*;
 
 public class TestingApp {
 
+    private final String PATH = "test-app";
     private final ActorRef routerActor;
 
     public TestingApp(ActorRef routerActor) {
@@ -36,7 +37,7 @@ public class TestingApp {
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         TestingApp instance = new TestingApp(routerActor);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute(system).flow(system, materializer);
+                instance.createRoute().flow(system, materializer);
 
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
@@ -51,9 +52,9 @@ public class TestingApp {
                 .thenAccept(unbound -> system.terminate());
     }
 
-    public Route createRoute(ActorSystem actorSystem) {
+    public Route createRoute() {
         return route(
-                path("test-app", () ->
+                path(PATH, () ->
                         route(
                                 get(() -> parameter("packageId", (packageId) -> {
                                     Future<Object> result = Patterns.ask(routerActor,
