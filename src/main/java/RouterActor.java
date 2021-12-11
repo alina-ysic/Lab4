@@ -28,8 +28,6 @@ public class RouterActor extends AbstractActor {
         return receiveBuilder()
             .match(PostRequest.class, postRequest -> executeTests(postRequest))
             .match(GetRequest.class, getRequest -> {
-                System.out.println("bbb");
-                System.out.println(sender());
                 resultActor.tell(getRequest, sender());
             })
                 .build();
